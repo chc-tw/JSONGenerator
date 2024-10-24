@@ -1,0 +1,35 @@
+{
+    "conditionStyle": "and",
+    "conditionType": {
+      "label": "MACD",
+      "value": "macd"
+    },
+    "formula": {
+      "label": "MACD Comparison",
+      "value": "macd_comparison",
+      "type": "macd"
+    },
+    "timeFrameValue": 1,
+    "timeFrameUnit": {
+      "label": "Min",
+      "value": "T"
+    },
+    "detail": {
+      "numerator": {
+        "minusNumber": 0
+      },
+      "denominator": {
+        "minusNumber": 5
+      },
+      "compare": ">",
+      "compareValue": 0
+    },
+    "params": {
+      "bbValue": null,
+      "macdValue": {
+        "fast": 12,
+        "slow": 26,
+        "signal": 9
+      }
+    }
+  }

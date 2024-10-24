@@ -1,0 +1,32 @@
+{
+    "conditionStyle": "and",
+    "conditionType": {
+      "label": "Moving Average",
+      "value": "ma"
+    },
+    "formula": {
+      "label": "N Ticks SMA",
+      "value": "n_ticks_sma",
+      "type": "ma"
+    },
+    "timeFrameValue": 1,
+    "timeFrameUnit": {
+      "label": "Min",
+      "value": "T"
+    },
+    "detail": {
+      "numerator": {
+        "priceType": "Close",
+        "minusNumber": 5
+      },
+      "denominator": {
+        "smaValue": 20
+      },
+      "compare": ">",
+      "compareValue": 3
+    },
+    "params": {
+      "bbValue": null,
+      "macdValue": null
+    }
+  }

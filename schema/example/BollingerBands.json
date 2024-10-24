@@ -1,0 +1,42 @@
+{
+    "conditionStyle": "and",
+    "conditionType": {
+      "label": "Bollinger Bands",
+      "value": "bb"
+    },
+    "formula": {
+      "label": "Bollinger Bands Comparison",
+      "value": "bb_comparison",
+      "type": "bb"
+    },
+    "timeFrameValue": 1,
+    "timeFrameUnit": {
+      "label": "Min",
+      "value": "T"
+    },
+    "detail": {
+      "numerator": {
+        "minusNumber": 0,
+        "bbType": {
+          "label": "Upper Band",
+          "value": "upper"
+        }
+      },
+      "denominator": {
+        "minusNumber": 5,
+        "bbType": {
+          "label": "Upper Band",
+          "value": "upper"
+        }
+      },
+      "compare": ">",
+      "compareValue": 3
+    },
+    "params": {
+      "bbValue": {
+        "sma": 20,
+        "std": 2
+      },
+      "macdValue": null
+    }
+  }

@@ -1,0 +1,33 @@
+{
+    "conditionStyle": "and",
+    "conditionType": {
+      "label": "Moving Average",
+      "value": "ma"
+    },
+    "formula": {
+      "label": "Latest Price compare with SMA",
+      "value": "price/sma",
+      "type": "ma"
+    },
+    "timeFrameValue": 1,
+    "timeFrameUnit": {
+      "label": "Min",
+      "value": "T"
+    },
+    "detail": {
+      "numerator": {
+        "priceType": "Close",
+        "minusNumber": 0
+      },
+      "denominator": {
+        "smaValue": 20,
+        "minusNumber": 0
+      },
+      "compare": ">",
+      "compareValue": 5
+    },
+    "params": {
+      "bbValue": null,
+      "macdValue": null
+    }
+  }

@@ -1,0 +1,34 @@
+{
+    "conditionStyle": "and",
+    "conditionType": {
+      "label": "Bollinger Bands",
+      "value": "bb"
+    },
+    "formula": {
+      "label": "Bandwidth Comparison",
+      "value": "bandwidth_comparison",
+      "type": "bb"
+    },
+    "timeFrameValue": 1,
+    "timeFrameUnit": {
+      "label": "Min",
+      "value": "T"
+    },
+    "detail": {
+      "numerator": {
+        "minusNumber": 0
+      },
+      "denominator": {
+        "minusNumber": 5
+      },
+      "compare": ">",
+      "compareValue": 5
+    },
+    "params": {
+      "bbValue": {
+        "sma": 20,
+        "std": 2
+      },
+      "macdValue": null
+    }
+  }

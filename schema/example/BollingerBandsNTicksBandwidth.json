@@ -1,0 +1,32 @@
+{
+    "conditionStyle": "and",
+    "conditionType": {
+      "label": "Bollinger Bands",
+      "value": "bb"
+    },
+    "formula": {
+      "label": "N Ticks Bandwidth",
+      "value": "n_ticks_bandwidth",
+      "type": "bb"
+    },
+    "timeFrameValue": 1,
+    "timeFrameUnit": {
+      "label": "Min",
+      "value": "T"
+    },
+    "detail": {
+      "numerator": {
+        "minusNumber": 5
+      },
+      "denominator": {},
+      "compare": ">",
+      "compareValue": 0
+    },
+    "params": {
+      "bbValue": {
+        "sma": 20,
+        "std": 2
+      },
+      "macdValue": null
+    }
+  }

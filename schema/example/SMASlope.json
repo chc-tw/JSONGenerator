@@ -1,0 +1,31 @@
+{
+    "conditionStyle": "and",
+    "conditionType": {
+      "label": "Moving Average",
+      "value": "ma"
+    },
+    "formula": {
+      "label": "SMA Cross Strategy",
+      "value": "sma_cross",
+      "type": "ma"
+    },
+    "timeFrameValue": 1,
+    "timeFrameUnit": {
+      "label": "Min",
+      "value": "T"
+    },
+    "detail": {
+      "numerator": {
+        "smaValue": 5
+      },
+      "denominator": {
+        "smaValue": 20
+      },
+      "compare": ">",
+      "compareValue": 0
+    },
+    "params": {
+      "bbValue": null,
+      "macdValue": null
+    }
+  }

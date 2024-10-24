@@ -1,0 +1,37 @@
+{
+    "conditionStyle": "and",
+    "conditionType": {
+      "label": "Price",
+      "value": "price"
+    },
+    "formula": {
+      "label": "N Ticks Price Comparison",
+      "value": "n_ticks_price",
+      "type": "price"
+    },
+    "timeFrameValue": 1,
+    "timeFrameUnit": {
+      "label": "Min",
+      "value": "T"
+    },
+    "detail": {
+      "numerator": {
+        "minusNumber": 0,
+        "priceType": "Close"
+      },
+      "denominator": {
+        "minusNumber": 6,
+        "priceType": "Close",
+        "minOrMax": {
+          "label": "Minimum",
+          "value": "min"
+        }
+      },
+      "compare": "<",
+      "compareValue": 0
+    },
+    "params": {
+      "bbValue": null,
+      "macdValue": null
+    }
+  }

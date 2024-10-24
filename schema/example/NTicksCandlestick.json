@@ -1,0 +1,30 @@
+{
+    "conditionStyle": "and",
+    "conditionType": {
+      "label": "Candlestick",
+      "value": "candlestick"
+    },
+    "formula": {
+      "label": "N Ticks Candlestick Type",
+      "value": "n_ticks_candle_type",
+      "type": "candlestick"
+    },
+    "timeFrameValue": 1,
+    "timeFrameUnit": {
+      "label": "Min",
+      "value": "T"
+    },
+    "detail": {
+      "numerator": {
+        "minusNumber": 3,
+        "candleType": "bullish"
+      },
+      "denominator": {},
+      "compare": "",
+      "compareValue": 0
+    },
+    "params": {
+      "bbValue": null,
+      "macdValue": null
+    }
+  }

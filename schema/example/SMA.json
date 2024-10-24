@@ -1,0 +1,33 @@
+{
+    "conditionStyle": "and",
+    "conditionType": {
+      "label": "Moving Average",
+      "value": "ma"
+    },
+    "formula": {
+      "label": "SMA compare with SMA",
+      "value": "sma/sma",
+      "type": "ma"
+    },
+    "timeFrameValue": 1,
+    "timeFrameUnit": {
+      "label": "Min",
+      "value": "T"
+    },
+    "detail": {
+      "numerator": {
+        "minusNumber": 0,
+        "smaValue": 5
+      },
+      "denominator": {
+        "minusNumber": 0,
+        "smaValue": 20
+      },
+      "compare": ">",
+      "compareValue": 5
+    },
+    "params": {
+      "bbValue": null,
+      "macdValue": null
+    }
+  }

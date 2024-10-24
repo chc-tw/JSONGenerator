@@ -1,0 +1,39 @@
+{
+    "conditionStyle": "and",
+    "conditionType": {
+      "label": "Bollinger Bands",
+      "value": "bb"
+    },
+    "formula": {
+      "label": "Price / Bollinger Bands",
+      "value": "price/bb",
+      "type": "bb"
+    },
+    "timeFrameValue": 1,
+    "timeFrameUnit": {
+      "label": "Min",
+      "value": "T"
+    },
+    "detail": {
+      "numerator": {
+        "minusNumber": 0,
+        "priceType": "Close"
+      },
+      "denominator": {
+        "minusNumber": 5,
+        "bbType": {
+          "label": "Upper Band",
+          "value": "upper"
+        }
+      },
+      "compare": ">",
+      "compareValue": 0
+    },
+    "params": {
+      "bbValue": {
+        "sma": 20,
+        "std": 2
+      },
+      "macdValue": null
+    }
+  }
