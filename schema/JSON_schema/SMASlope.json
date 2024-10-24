@@ -1,0 +1,154 @@
+{
+    "name": "strategy_form_configuration",
+    "type": "object",
+    "properties": {
+        "conditionStyle": {
+            "type": "string",
+            "description": "Logical style for combining conditions, for example 'and' or 'or'."
+        },
+        "conditionType": {
+            "type": "object",
+            "description": "The type of condition being applied.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The display label for the condition type."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The internal value representing the condition type."
+                }
+            },
+            "required": [
+                "label",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "formula": {
+            "type": "object",
+            "description": "The formula being used for the strategy.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The display label for the formula."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The internal value representing the formula."
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the formula, for example 'ma'."
+                }
+            },
+            "required": [
+                "label",
+                "value",
+                "type"
+            ],
+            "additionalProperties": false
+        },
+        "timeFrameValue": {
+            "type": "number",
+            "description": "The numerical value representing the time frame."
+        },
+        "timeFrameUnit": {
+            "type": "object",
+            "description": "The unit of the time frame.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The display label for the time frame unit."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The internal value representing the time frame unit."
+                }
+            },
+            "required": [
+                "label",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "detail": {
+            "type": "object",
+            "description": "Details of the comparison being made.",
+            "properties": {
+                "numerator": {
+                    "type": "object",
+                    "description": "Details of the numerator in the comparison.",
+                    "properties": {
+                        "smaValue": {
+                            "type": "number",
+                            "description": "The value of the Simple Moving Average for the numerator."
+                        }
+                    },
+                    "required": [
+                        "smaValue"
+                    ],
+                    "additionalProperties": false
+                },
+                "denominator": {
+                    "type": "object",
+                    "description": "Details of the denominator in the comparison.",
+                    "properties": {
+                        "smaValue": {
+                            "type": "number",
+                            "description": "The value of the Simple Moving Average for the denominator."
+                        }
+                    },
+                    "required": [
+                        "smaValue"
+                    ],
+                    "additionalProperties": false
+                },
+                "compare": {
+                    "type": "string",
+                    "description": "The comparison operator used, e.g., '>'."
+                },
+                "compareValue": {
+                    "type": "number",
+                    "description": "The value used for comparison."
+                }
+            },
+            "required": [
+                "numerator",
+                "denominator",
+                "compare",
+                "compareValue"
+            ],
+            "additionalProperties": false
+        },
+        "params": {
+            "type": "object",
+            "description": "Parameters for the strategy configuration.",
+            "properties": {
+                "bbValue": {
+                    "type": "null",
+                    "description": "Bollinger Bands value, null in this example."
+                },
+                "macdValue": {
+                    "type": "null",
+                    "description": "MACD value, null in this example."
+                }
+            },
+            "required": [
+                "bbValue",
+                "macdValue"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "required": [
+        "conditionStyle",
+        "conditionType",
+        "formula",
+        "timeFrameValue",
+        "timeFrameUnit",
+        "detail",
+        "params"
+    ],
+    "additionalProperties": false
+}

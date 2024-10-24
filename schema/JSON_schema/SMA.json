@@ -1,0 +1,157 @@
+{
+    "name": "condition_schema",
+    "type": "object",
+    "properties": {
+        "conditionStyle": {
+            "type": "string",
+            "description": "Logical style for the condition, e.g., 'and' or 'or'."
+        },
+        "conditionType": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The label for the condition type, e.g., 'Moving Average'."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value identifier for the condition type, e.g., 'ma'."
+                }
+            },
+            "required": [
+                "label",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "formula": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The label for the formula, e.g., 'SMA compare with SMA'."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value of the formula, e.g., 'sma/sma'."
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of formula, e.g., 'ma'."
+                }
+            },
+            "required": [
+                "label",
+                "value",
+                "type"
+            ],
+            "additionalProperties": false
+        },
+        "timeFrameValue": {
+            "type": "integer",
+            "description": "The numeric value of the time frame, e.g., 1."
+        },
+        "timeFrameUnit": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The label for the time frame unit, e.g., 'Min'."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value identifier for the time frame unit, e.g., 'T'."
+                }
+            },
+            "required": [
+                "label",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "detail": {
+            "type": "object",
+            "properties": {
+                "numerator": {
+                    "type": "object",
+                    "properties": {
+                        "minusNumber": {
+                            "type": "integer",
+                            "description": "The minus number in the numerator, e.g., 0."
+                        },
+                        "smaValue": {
+                            "type": "integer",
+                            "description": "The SMA value in the numerator, e.g., 5."
+                        }
+                    },
+                    "required": [
+                        "minusNumber",
+                        "smaValue"
+                    ],
+                    "additionalProperties": false
+                },
+                "denominator": {
+                    "type": "object",
+                    "properties": {
+                        "minusNumber": {
+                            "type": "integer",
+                            "description": "The minus number in the denominator, e.g., 0."
+                        },
+                        "smaValue": {
+                            "type": "integer",
+                            "description": "The SMA value in the denominator, e.g., 20."
+                        }
+                    },
+                    "required": [
+                        "minusNumber",
+                        "smaValue"
+                    ],
+                    "additionalProperties": false
+                },
+                "compare": {
+                    "type": "string",
+                    "description": "The comparison operator, e.g., '>'."
+                },
+                "compareValue": {
+                    "type": "integer",
+                    "description": "The value to compare against, e.g., 5."
+                }
+            },
+            "required": [
+                "numerator",
+                "denominator",
+                "compare",
+                "compareValue"
+            ],
+            "additionalProperties": false
+        },
+        "params": {
+            "type": "object",
+            "properties": {
+                "bbValue": {
+                    "type": ["number", "null"],
+                    "description": "The Bollinger Bands value, can be null."
+                },
+                "macdValue": {
+                    "type": ["number", "null"],
+                    "description": "The MACD value, can be null."
+                }
+            },
+            "required": [
+                "bbValue",
+                "macdValue"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "required": [
+        "conditionStyle",
+        "conditionType",
+        "formula",
+        "timeFrameValue",
+        "timeFrameUnit",
+        "detail",
+        "params"
+    ],
+    "additionalProperties": false
+}

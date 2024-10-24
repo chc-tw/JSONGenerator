@@ -1,0 +1,161 @@
+{
+    "name": "strategy_form_configuration",
+    "type": "object",
+    "properties": {
+        "conditionStyle": {
+            "type": "string",
+            "description": "Logical style of the condition, e.g. 'and' or 'or'."
+        },
+        "conditionType": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The label for the condition type, e.g. 'Bollinger Bands'."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The internal value representing the condition type, e.g. 'bb'."
+                }
+            },
+            "required": [
+                "label",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "formula": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The label for the formula, e.g. 'Bandwidth Comparison'."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The internal value representing the formula, e.g. 'bandwidth_comparison'."
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type related to the formula, e.g. 'bb'."
+                }
+            },
+            "required": [
+                "label",
+                "value",
+                "type"
+            ],
+            "additionalProperties": false
+        },
+        "timeFrameValue": {
+            "type": "number",
+            "description": "The numerical value representing the time frame, e.g. 1."
+        },
+        "timeFrameUnit": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The label for the time frame unit, e.g. 'Min'."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The internal value representing the time frame unit, e.g. 'T'."
+                }
+            },
+            "required": [
+                "label",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "detail": {
+            "type": "object",
+            "properties": {
+                "numerator": {
+                    "type": "object",
+                    "properties": {
+                        "minusNumber": {
+                            "type": "number",
+                            "description": "The value to subtract from the numerator, e.g. 0."
+                        }
+                    },
+                    "required": [
+                        "minusNumber"
+                    ],
+                    "additionalProperties": false
+                },
+                "denominator": {
+                    "type": "object",
+                    "properties": {
+                        "minusNumber": {
+                            "type": "number",
+                            "description": "The value to subtract from the denominator, e.g. 5."
+                        }
+                    },
+                    "required": [
+                        "minusNumber"
+                    ],
+                    "additionalProperties": false
+                },
+                "compare": {
+                    "type": "string",
+                    "description": "The comparison operator, e.g. '>'."
+                },
+                "compareValue": {
+                    "type": "number",
+                    "description": "The value to compare against, e.g. 5."
+                }
+            },
+            "required": [
+                "numerator",
+                "denominator",
+                "compare",
+                "compareValue"
+            ],
+            "additionalProperties": false
+        },
+        "params": {
+            "type": "object",
+            "properties": {
+                "bbValue": {
+                    "type": "object",
+                    "properties": {
+                        "sma": {
+                            "type": "number",
+                            "description": "The simple moving average period, e.g. 20."
+                        },
+                        "std": {
+                            "type": "number",
+                            "description": "The standard deviation multiplier, e.g. 2."
+                        }
+                    },
+                    "required": [
+                        "sma",
+                        "std"
+                    ],
+                    "additionalProperties": false
+                },
+                "macdValue": {
+                    "type": "null",
+                    "description": "The MACD value; null in this configuration."
+                }
+            },
+            "required": [
+                "bbValue",
+                "macdValue"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "required": [
+        "conditionStyle",
+        "conditionType",
+        "formula",
+        "timeFrameValue",
+        "timeFrameUnit",
+        "detail",
+        "params"
+    ],
+    "additionalProperties": false
+}

@@ -1,0 +1,176 @@
+{
+    "name": "strategy_form_configuration",
+    "type": "object",
+    "properties": {
+        "conditionStyle": {
+            "type": "string",
+            "description": "The logical condition style, such as 'and' or 'or'."
+        },
+        "conditionType": {
+            "type": "object",
+            "description": "Defines the condition type used in the strategy.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The label for the condition type."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The internal value representing the condition type."
+                }
+            },
+            "required": [
+                "label",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "formula": {
+            "type": "object",
+            "description": "Specifies the formula used for the strategy.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The label for the formula."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The internal value representing the formula."
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the formula."
+                }
+            },
+            "required": [
+                "label",
+                "value",
+                "type"
+            ],
+            "additionalProperties": false
+        },
+        "timeFrameValue": {
+            "type": "number",
+            "description": "The value of the time frame for the strategy."
+        },
+        "timeFrameUnit": {
+            "type": "object",
+            "description": "Defines the unit of the time frame.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The label for the time frame unit."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The internal value representing the time frame unit."
+                }
+            },
+            "required": [
+                "label",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "detail": {
+            "type": "object",
+            "description": "Details of the strategy calculation.",
+            "properties": {
+                "numerator": {
+                    "type": "object",
+                    "description": "Numerator details for the strategy.",
+                    "properties": {
+                        "minusNumber": {
+                            "type": "number",
+                            "description": "The number of periods ago for the numerator calculation."
+                        }
+                    },
+                    "required": [
+                        "minusNumber"
+                    ],
+                    "additionalProperties": false
+                },
+                "denominator": {
+                    "type": "object",
+                    "description": "Denominator details for the strategy.",
+                    "properties": {
+                        "minusNumber": {
+                            "type": "number",
+                            "description": "The number of periods ago for the denominator calculation."
+                        }
+                    },
+                    "required": [
+                        "minusNumber"
+                    ],
+                    "additionalProperties": false
+                },
+                "compare": {
+                    "type": "string",
+                    "description": "The comparison operator used in the strategy."
+                },
+                "compareValue": {
+                    "type": "number",
+                    "description": "The value to compare against in the strategy."
+                }
+            },
+            "required": [
+                "numerator",
+                "denominator",
+                "compare",
+                "compareValue"
+            ],
+            "additionalProperties": false
+        },
+        "params": {
+            "type": "object",
+            "description": "Additional parameters for the strategy.",
+            "properties": {
+                "bbValue": {
+                    "type": "object",
+                    "description": "Parameters for the Bollinger Bands value.",
+                    "properties": {
+                        "sma": {
+                            "type": "number",
+                            "description": "Simple Moving Average value for BB."
+                        },
+                        "std": {
+                            "type": "number",
+                            "description": "Standard deviation for BB."
+                        }
+                    },
+                    "required": [
+                        "sma",
+                        "std"
+                    ],
+                    "additionalProperties": false
+                },
+                "macdValue": {
+                    "anyOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "type": "object",
+                            "description": "MACD value object, null if not used."
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "bbValue",
+                "macdValue"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "required": [
+        "conditionStyle",
+        "conditionType",
+        "formula",
+        "timeFrameValue",
+        "timeFrameUnit",
+        "detail",
+        "params"
+    ],
+    "additionalProperties": false
+}

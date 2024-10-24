@@ -1,0 +1,200 @@
+{
+    "name": "strategy_form_configuration",
+    "type": "object",
+    "properties": {
+        "conditionStyle": {
+            "type": "string",
+            "description": "The logical condition style, such as 'and' or 'or'."
+        },
+        "conditionType": {
+            "type": "object",
+            "description": "The type of condition being applied.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "A user-friendly label for the condition type."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The internal value representing the condition type."
+                }
+            },
+            "required": [
+                "label",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "formula": {
+            "type": "object",
+            "description": "The formula applied in the strategy.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "A user-friendly label for the formula."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The internal value representing the formula."
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of formula being used."
+                }
+            },
+            "required": [
+                "label",
+                "value",
+                "type"
+            ],
+            "additionalProperties": false
+        },
+        "timeFrameValue": {
+            "type": "number",
+            "description": "The numerical value of the time frame."
+        },
+        "timeFrameUnit": {
+            "type": "object",
+            "description": "The unit of time frame used.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "A user-friendly label for the time frame unit."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The internal value representing the time frame unit."
+                }
+            },
+            "required": [
+                "label",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "detail": {
+            "type": "object",
+            "description": "Details of the strategy formula comparison.",
+            "properties": {
+                "numerator": {
+                    "type": "object",
+                    "description": "Configuration for the numerator in the formula.",
+                    "properties": {
+                        "minusNumber": {
+                            "type": "number",
+                            "description": "The period offset for the numerator."
+                        },
+                        "priceType": {
+                            "type": "string",
+                            "description": "Type of price used, such as 'Close'."
+                        }
+                    },
+                    "required": [
+                        "minusNumber",
+                        "priceType"
+                    ],
+                    "additionalProperties": false
+                },
+                "denominator": {
+                    "type": "object",
+                    "description": "Configuration for the denominator in the formula.",
+                    "properties": {
+                        "minusNumber": {
+                            "type": "number",
+                            "description": "The period offset for the denominator."
+                        },
+                        "bbType": {
+                            "type": "object",
+                            "description": "Bollinger Bands type used for the denominator.",
+                            "properties": {
+                                "label": {
+                                    "type": "string",
+                                    "description": "A user-friendly label for the BB type."
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "description": "The internal value representing the BB type."
+                                }
+                            },
+                            "required": [
+                                "label",
+                                "value"
+                            ],
+                            "additionalProperties": false
+                        }
+                    },
+                    "required": [
+                        "minusNumber",
+                        "bbType"
+                    ],
+                    "additionalProperties": false
+                },
+                "compare": {
+                    "type": "string",
+                    "description": "Comparison operator, such as '>'."
+                },
+                "compareValue": {
+                    "type": "number",
+                    "description": "The value used for comparison."
+                }
+            },
+            "required": [
+                "numerator",
+                "denominator",
+                "compare",
+                "compareValue"
+            ],
+            "additionalProperties": false
+        },
+        "params": {
+            "type": "object",
+            "description": "Parameters for the strategy configuration.",
+            "properties": {
+                "bbValue": {
+                    "type": "object",
+                    "description": "Bollinger Bands parameters.",
+                    "properties": {
+                        "sma": {
+                            "type": "number",
+                            "description": "Simple moving average period for BB."
+                        },
+                        "std": {
+                            "type": "number",
+                            "description": "Standard deviation for BB."
+                        }
+                    },
+                    "required": [
+                        "sma",
+                        "std"
+                    ],
+                    "additionalProperties": false
+                },
+                "macdValue": {
+                    "type": [
+                        "object",
+                        "null"
+                    ],
+                    "description": "MACD parameters, if applicable. Null if not used.",
+                    "properties": {},
+                    "required": [],
+                    "additionalProperties": false
+                }
+            },
+            "required": [
+                "bbValue",
+                "macdValue"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "required": [
+        "conditionStyle",
+        "conditionType",
+        "formula",
+        "timeFrameValue",
+        "timeFrameUnit",
+        "detail",
+        "params"
+    ],
+    "additionalProperties": false
+}

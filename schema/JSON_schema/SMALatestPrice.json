@@ -1,0 +1,164 @@
+{
+    "name": "strategy_form_configuration",
+    "type": "object",
+    "properties": {
+        "conditionStyle": {
+            "type": "string",
+            "description": "The logical condition style, such as 'and' or 'or'."
+        },
+        "conditionType": {
+            "type": "object",
+            "description": "The condition type with label and value.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The label for the condition type, e.g., 'Moving Average'."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value identifier for the condition type, e.g., 'ma'."
+                }
+            },
+            "required": [
+                "label",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "formula": {
+            "type": "object",
+            "description": "Formula details used in the strategy.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The label for the formula, e.g., 'Latest Price compare with SMA'."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The formula value, e.g., 'price/sma'."
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The formula type, e.g., 'ma'."
+                }
+            },
+            "required": [
+                "label",
+                "value",
+                "type"
+            ],
+            "additionalProperties": false
+        },
+        "timeFrameValue": {
+            "type": "integer",
+            "description": "The numerical value of the time frame, e.g., 1."
+        },
+        "timeFrameUnit": {
+            "type": "object",
+            "description": "The unit of the time frame.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The label for the time frame unit, e.g., 'Min'."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value for the time frame unit, e.g., 'T'."
+                }
+            },
+            "required": [
+                "label",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "detail": {
+            "type": "object",
+            "description": "Details of the formula comparison.",
+            "properties": {
+                "numerator": {
+                    "type": "object",
+                    "description": "Details of the numerator in the formula.",
+                    "properties": {
+                        "priceType": {
+                            "type": "string",
+                            "description": "The type of price used, e.g., 'Close'."
+                        },
+                        "minusNumber": {
+                            "type": "integer",
+                            "description": "The number of periods to look back, e.g., 0."
+                        }
+                    },
+                    "required": [
+                        "priceType",
+                        "minusNumber"
+                    ],
+                    "additionalProperties": false
+                },
+                "denominator": {
+                    "type": "object",
+                    "description": "Details of the denominator in the formula.",
+                    "properties": {
+                        "smaValue": {
+                            "type": "integer",
+                            "description": "The value of the SMA, e.g., 20."
+                        },
+                        "minusNumber": {
+                            "type": "integer",
+                            "description": "The number of periods to look back, e.g., 0."
+                        }
+                    },
+                    "required": [
+                        "smaValue",
+                        "minusNumber"
+                    ],
+                    "additionalProperties": false
+                },
+                "compare": {
+                    "type": "string",
+                    "description": "The comparison operator used, e.g., '>'."
+                },
+                "compareValue": {
+                    "type": "number",
+                    "description": "The value to compare against, e.g., 5."
+                }
+            },
+            "required": [
+                "numerator",
+                "denominator",
+                "compare",
+                "compareValue"
+            ],
+            "additionalProperties": false
+        },
+        "params": {
+            "type": "object",
+            "description": "Additional parameters for the strategy.",
+            "properties": {
+                "bbValue": {
+                    "type": ["number", "null"],
+                    "description": "Bollinger Bands value; null if not used."
+                },
+                "macdValue": {
+                    "type": ["number", "null"],
+                    "description": "MACD value; null if not used."
+                }
+            },
+            "required": [
+                "bbValue",
+                "macdValue"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "required": [
+        "conditionStyle",
+        "conditionType",
+        "formula",
+        "timeFrameValue",
+        "timeFrameUnit",
+        "detail",
+        "params"
+    ],
+    "additionalProperties": false
+}

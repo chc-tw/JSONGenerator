@@ -1,0 +1,159 @@
+{
+    "name": "sma_cross_strategy",
+    "type": "object",
+    "properties": {
+        "conditionStyle": {
+            "type": "string",
+            "description": "The logical style of the condition, e.g., 'and' or 'or'."
+        },
+        "conditionType": {
+            "type": "object",
+            "description": "The type of condition being evaluated.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "Human-readable label for the condition type."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "Machine-readable value for the condition type."
+                }
+            },
+            "required": [
+                "label",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "formula": {
+            "type": "object",
+            "description": "The formula used in the strategy.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "Human-readable label for the formula."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "Machine-readable value for the formula."
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of the formula."
+                }
+            },
+            "required": [
+                "label",
+                "value",
+                "type"
+            ],
+            "additionalProperties": false
+        },
+        "timeFrameValue": {
+            "type": "number",
+            "description": "Numeric value representing the timeframe."
+        },
+        "timeFrameUnit": {
+            "type": "object",
+            "description": "Unit of the timeframe.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "Human-readable label for the timeframe unit."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "Machine-readable value for the timeframe unit."
+                }
+            },
+            "required": [
+                "label",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "detail": {
+            "type": "object",
+            "description": "Detailed parameters for the SMA Cross strategy.",
+            "properties": {
+                "numerator": {
+                    "type": "object",
+                    "description": "Numerator details for the SMA calculation.",
+                    "properties": {
+                        "priceType": {
+                            "type": "string",
+                            "description": "Type of price used in the numerator, e.g., 'Close'."
+                        },
+                        "minusNumber": {
+                            "type": "number",
+                            "description": "Number to be subtracted from the price."
+                        }
+                    },
+                    "required": [
+                        "priceType",
+                        "minusNumber"
+                    ],
+                    "additionalProperties": false
+                },
+                "denominator": {
+                    "type": "object",
+                    "description": "Denominator details for the SMA calculation.",
+                    "properties": {
+                        "smaValue": {
+                            "type": "number",
+                            "description": "SMA value used in the denominator."
+                        }
+                    },
+                    "required": [
+                        "smaValue"
+                    ],
+                    "additionalProperties": false
+                },
+                "compare": {
+                    "type": "string",
+                    "description": "Comparison operator used for the strategy."
+                },
+                "compareValue": {
+                    "type": "number",
+                    "description": "Value used for comparison, though not used in a golden cross scenario."
+                }
+            },
+            "required": [
+                "numerator",
+                "denominator",
+                "compare",
+                "compareValue"
+            ],
+            "additionalProperties": false
+        },
+        "params": {
+            "type": "object",
+            "description": "Additional parameters for the strategy.",
+            "properties": {
+                "bbValue": {
+                    "type": ["number", "null"],
+                    "description": "Bollinger Bands value, if applicable."
+                },
+                "macdValue": {
+                    "type": ["number", "null"],
+                    "description": "MACD value, if applicable."
+                }
+            },
+            "required": [
+                "bbValue",
+                "macdValue"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "required": [
+        "conditionStyle",
+        "conditionType",
+        "formula",
+        "timeFrameValue",
+        "timeFrameUnit",
+        "detail",
+        "params"
+    ],
+    "additionalProperties": false
+}

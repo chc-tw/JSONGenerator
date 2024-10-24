@@ -1,0 +1,157 @@
+{
+    "name": "strategy_form_configuration",
+    "type": "object",
+    "properties": {
+        "conditionStyle": {
+            "type": "string",
+            "description": "Defines the logical condition style, such as 'and' or 'or'."
+        },
+        "conditionType": {
+            "type": "object",
+            "description": "The type of condition being evaluated.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The display label for the condition type."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The internal value identifier for the condition type."
+                }
+            },
+            "required": [
+                "label",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "formula": {
+            "type": "object",
+            "description": "Details of the formula used in the strategy.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The display label for the formula."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The internal value identifier for the formula."
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of formula, such as 'candlestick'."
+                }
+            },
+            "required": [
+                "label",
+                "value",
+                "type"
+            ],
+            "additionalProperties": false
+        },
+        "timeFrameValue": {
+            "type": "number",
+            "description": "The numerical value representing the timeframe."
+        },
+        "timeFrameUnit": {
+            "type": "object",
+            "description": "The unit of time for the timeframe value.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The display label for the time unit."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The internal value identifier for the time unit."
+                }
+            },
+            "required": [
+                "label",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "detail": {
+            "type": "object",
+            "description": "Details of the comparison being made in the strategy.",
+            "properties": {
+                "numerator": {
+                    "type": "object",
+                    "description": "The current period's MACD details.",
+                    "properties": {
+                        "minusNumber": {
+                            "type": "number",
+                            "description": "The offset for the current period's MACD."
+                        },
+                        "candleType": {
+                            "type": "string",
+                            "description": "The type of candlestick, e.g., 'bullish'."
+                        }
+                    },
+                    "required": [
+                        "minusNumber",
+                        "candleType"
+                    ],
+                    "additionalProperties": false
+                },
+                "denominator": {
+                    "type": "object",
+                    "description": "The past period's MACD details.",
+                    "properties": {
+                        "minusNumber": {
+                            "type": "number",
+                            "description": "The offset for the past period's MACD."
+                        }
+                    },
+                    "required": [],
+                    "additionalProperties": false
+                },
+                "compare": {
+                    "type": "string",
+                    "description": "The comparison operator used, e.g., '>'."
+                },
+                "compareValue": {
+                    "type": "number",
+                    "description": "The value used in the comparison."
+                }
+            },
+            "required": [
+                "numerator",
+                "denominator",
+                "compare",
+                "compareValue"
+            ],
+            "additionalProperties": false
+        },
+        "params": {
+            "type": "object",
+            "description": "MACD parameters for the strategy.",
+            "properties": {
+                "bbValue": {
+                    "type": "null",
+                    "description": "Placeholder for Bollinger Bands value, set to null."
+                },
+                "macdValue": {
+                    "type": "null",
+                    "description": "Placeholder for MACD value, set to null."
+                }
+            },
+            "required": [
+                "bbValue",
+                "macdValue"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "required": [
+        "conditionStyle",
+        "conditionType",
+        "formula",
+        "timeFrameValue",
+        "timeFrameUnit",
+        "detail",
+        "params"
+    ],
+    "additionalProperties": false
+}
