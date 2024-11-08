@@ -2,7 +2,6 @@ from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
-
 load_dotenv()
 
 
@@ -73,6 +72,65 @@ META_SCHEMA = {
     },
 }
 
+META_SCHEMA_202012 = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://json-schema.org/draft/2020-12/schema",
+    "$vocabulary": {
+        "https://json-schema.org/draft/2020-12/vocab/core": True,
+        "https://json-schema.org/draft/2020-12/vocab/applicator": True,
+        "https://json-schema.org/draft/2020-12/vocab/unevaluated": True,
+        "https://json-schema.org/draft/2020-12/vocab/validation": True,
+        "https://json-schema.org/draft/2020-12/vocab/meta-data": True,
+        "https://json-schema.org/draft/2020-12/vocab/format-annotation": True,
+        "https://json-schema.org/draft/2020-12/vocab/content": True
+    },
+    "$dynamicAnchor": "meta",
+
+    "title": "Core and Validation specifications meta-schema",
+    "allOf": [
+        {"$ref": "meta/core"},
+        {"$ref": "meta/applicator"},
+        {"$ref": "meta/unevaluated"},
+        {"$ref": "meta/validation"},
+        {"$ref": "meta/meta-data"},
+        {"$ref": "meta/format-annotation"},
+        {"$ref": "meta/content"}
+    ],
+    "type": ["object", "boolean"],
+    "$comment": "This meta-schema also defines keywords that have appeared in previous drafts in order to prevent incompatible extensions as they remain in common use.",
+    "properties": {
+        "definitions": {
+            "$comment": "\"definitions\" has been replaced by \"$defs\".",
+            "type": "object",
+            "additionalProperties": { "$dynamicRef": "#meta" },
+            "deprecated": True,
+            "default": {}
+        },
+        "dependencies": {
+            "$comment": "\"dependencies\" has been split and replaced by \"dependentSchemas\" and \"dependentRequired\" in order to serve their differing semantics.",
+            "type": "object",
+            "additionalProperties": {
+                "anyOf": [
+                    { "$dynamicRef": "#meta" },
+                    { "$ref": "meta/validation#/$defs/stringArray" }
+                ]
+            },
+            "deprecated": True,
+            "default": {}
+        },
+        "$recursiveAnchor": {
+            "$comment": "\"$recursiveAnchor\" has been replaced by \"$dynamicAnchor\".",
+            "$ref": "meta/core#/$defs/anchorString",
+            "deprecated": True
+        },
+        "$recursiveRef": {
+            "$comment": "\"$recursiveRef\" has been replaced by \"$dynamicRef\".",
+            "$ref": "meta/core#/$defs/uriReferenceString",
+            "deprecated": True
+        }
+    }
+}
+
 META_PROMPT_SCHEMA = """
 # Instructions
 Return a valid schema for the described JSON.
@@ -85,6 +143,8 @@ You must also make sure:
 - all objects must have properties defined
 - field order matters. any form of "thinking" or "explanation" should come before the conclusion
 - $defs must be defined under the schema param
+- you need to follow the 2020-12 JSON schema standard
+- I REPEAT, YOU NEED TO FOLLOW THE 2020-12 JSON SCHEMA STANDARD
 
 Notable keywords NOT supported include:
 - For strings: minLength, maxLength, pattern, format
@@ -287,14 +347,14 @@ The final prompt you output should adhere to the following structure below. Do n
 [optional: edge cases, details, and an area to call or repeat out specific important considerations]
 """.strip()
 
-
 def generate_schema(description: str):
     message = [
         SystemMessage(content=META_PROMPT_SCHEMA),
         HumanMessage(content="Description:\n" + description),
     ]
     llm = ChatOpenAI(model="gpt-4o")
-    chain = llm | StrOutputParser()
+    llm = llm.with_structured_output(META_SCHEMA, method="json_schema")
+    chain = llm
     return chain.invoke(message)
 
 
