@@ -12,6 +12,7 @@
         },
         "conditionType": {
             "type": "object",
+            "description": "The selected condition type",
             "properties": {
                 "label": {
                     "type": "string",
@@ -46,6 +47,7 @@
         },
         "formula": {
             "type": "object",
+            "description": "The selected formula",
             "properties": {
                 "label": {
                     "type": "string",
@@ -119,6 +121,7 @@
         },
         "timeFrameUnit": {
             "type": "object",
+            "description": "The selected time frame unit",
             "properties": {
                 "label": {
                     "type": "string",
@@ -147,46 +150,85 @@
         },
         "detail": {
             "type": "object",
+            "description": "Contains the details of the strategy",
             "properties": {
                 "numerator": {
                     "type": "object",
+                    "description": "Properties for the numerator part of the formula",
                     "properties": {
                         "minusNumber": {
                             "type": "number",
                             "description": "Number of days to subtract"
                         },
-                        "smaValue": {
-                            "type": "number",
-                            "description": "SMA period"
+                        "priceType": {
+                            "type": "string",
+                            "description": "Type of price",
+                            "enum": [
+                                "Close",
+                                "Open"
+                            ]
                         }
                     },
                     "required": [
                         "minusNumber",
-                        "smaValue"
+                        "priceType"
                     ],
                     "additionalProperties": false
                 },
                 "denominator": {
                     "type": "object",
+                    "description": "Properties for the denominator part of the formula",
                     "properties": {
                         "minusNumber": {
                             "type": "number",
                             "description": "Number of days to subtract"
                         },
-                        "smaValue": {
-                            "type": "number",
-                            "description": "SMA period"
+                        "priceType": {
+                            "type": "string",
+                            "description": "Type of price",
+                            "enum": [
+                                "Close",
+                                "Open"
+                            ]
+                        },
+                        "minOrMax": {
+                            "type": "object",
+                            "description": "Object for min/max selection",
+                            "properties": {
+                                "label": {
+                                    "type": "string",
+                                    "description": "The label for min/max",
+                                    "enum": [
+                                        "Minimum",
+                                        "Maximum"
+                                    ]
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "description": "The value for min/max",
+                                    "enum": [
+                                        "min",
+                                        "max"
+                                    ]
+                                }
+                            },
+                            "required": [
+                                "label",
+                                "value"
+                            ],
+                            "additionalProperties": false
                         }
                     },
                     "required": [
                         "minusNumber",
-                        "smaValue"
+                        "priceType",
+                        "minOrMax"
                     ],
                     "additionalProperties": false
                 },
                 "compare": {
                     "type": "string",
-                    "description": "The comparison operator (e.g., '>', '<', '=')",
+                    "description": "The comparison operator",
                     "enum": [
                         ">",
                         "<",
@@ -208,20 +250,25 @@
         },
         "params": {
             "type": "object",
+            "description": "Additional parameters for specific strategies",
             "properties": {
                 "bbValue": {
                     "type": [
                         "object",
                         "null"
                     ],
-                    "description": "Bollinger Bands specific values (sma and std)"
+                    "description": "Bollinger Bands specific values",
+                    "properties": {},
+                    "additionalProperties": false
                 },
                 "macdValue": {
                     "type": [
                         "object",
                         "null"
                     ],
-                    "description": "MACD specific values (fast, slow, and signal)"
+                    "description": "MACD specific values",
+                    "properties": {},
+                    "additionalProperties": false
                 }
             },
             "required": [

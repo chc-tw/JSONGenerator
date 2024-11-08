@@ -1,10 +1,9 @@
 from jsonschema import validate, Draft202012Validator
 import jsonschema
 
-def validate_schema(schema: dict, schema_name: str) -> str:
-    try:
-        Draft202012Validator.check_schema(schema)
-        return f"Schema: {schema_name} is valid"
-    except jsonschema.exceptions.SchemaError as e:
-        return f"Schema: {schema_name} is invalid: {e}"
-
+def validate_schema(schema: dict, instance: dict, schema_name: str, verbose: bool = True) -> str:
+    Draft202012Validator.check_schema(schema)
+    validate(instance=instance, schema=schema)
+    if verbose:
+        print(f"[Valid] Schema: {schema_name}")
+    return None

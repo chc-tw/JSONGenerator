@@ -1,21 +1,22 @@
 {
-    "name": "strategy_form",
+    "name": "strategy_form_schema",
     "type": "object",
     "properties": {
         "conditionStyle": {
             "type": "string",
+            "description": "The style of the condition ('and' or 'or')",
             "enum": [
                 "and",
                 "or"
-            ],
-            "description": "The style of the condition ('and' or 'or')"
+            ]
         },
         "conditionType": {
             "type": "object",
-            "description": "The selected condition type (e.g., {label: 'Price', value: 'price'})",
+            "description": "The selected condition type",
             "properties": {
                 "label": {
                     "type": "string",
+                    "description": "The label of the condition type",
                     "enum": [
                         "Price",
                         "Candlestick",
@@ -23,11 +24,11 @@
                         "Bollinger Bands",
                         "RSI",
                         "MACD"
-                    ],
-                    "description": "The label of the condition type"
+                    ]
                 },
                 "value": {
                     "type": "string",
+                    "description": "The value of the condition type",
                     "enum": [
                         "price",
                         "candlestick",
@@ -35,8 +36,7 @@
                         "bb",
                         "rsi",
                         "macd"
-                    ],
-                    "description": "The value of the condition type"
+                    ]
                 }
             },
             "required": [
@@ -47,10 +47,11 @@
         },
         "formula": {
             "type": "object",
-            "description": "The selected formula (e.g., {label: 'Price / Price', value: 'price/price', type: 'price'})",
+            "description": "The selected formula",
             "properties": {
                 "label": {
                     "type": "string",
+                    "description": "The label of the formula",
                     "enum": [
                         "Price / Price",
                         "N Ticks Price Comparison",
@@ -69,11 +70,11 @@
                         "RSI Comparison",
                         "RSI Cross Strategy",
                         "MACD Comparison"
-                    ],
-                    "description": "The label of the formula"
+                    ]
                 },
                 "value": {
                     "type": "string",
+                    "description": "The value of the formula",
                     "enum": [
                         "price/price",
                         "n_ticks_price",
@@ -92,11 +93,11 @@
                         "rsi_comparison",
                         "rsi_cross",
                         "macd_comparison"
-                    ],
-                    "description": "The value of the formula"
+                    ]
                 },
                 "type": {
                     "type": "string",
+                    "description": "The type of the formula",
                     "enum": [
                         "price",
                         "candlestick",
@@ -104,8 +105,7 @@
                         "bb",
                         "rsi",
                         "macd"
-                    ],
-                    "description": "The type of the formula"
+                    ]
                 }
             },
             "required": [
@@ -117,29 +117,29 @@
         },
         "timeFrameValue": {
             "type": "number",
-            "description": "The numeric value for the time frame (e.g., 1, 5, 15)"
+            "description": "The numeric value for the time frame"
         },
         "timeFrameUnit": {
             "type": "object",
-            "description": "The selected time frame unit (e.g., {label: 'Min', value: 'T'})",
+            "description": "The selected time frame unit",
             "properties": {
                 "label": {
                     "type": "string",
+                    "description": "The label of the time frame unit",
                     "enum": [
                         "Min",
                         "Hour",
                         "Day"
-                    ],
-                    "description": "The label of the time frame unit"
+                    ]
                 },
                 "value": {
                     "type": "string",
+                    "description": "The value of the time frame unit",
                     "enum": [
                         "T",
                         "H",
                         "D"
-                    ],
-                    "description": "The value of the time frame unit"
+                    ]
                 }
             },
             "required": [
@@ -162,25 +162,25 @@
                         },
                         "bbType": {
                             "type": "object",
-                            "description": "Bollinger Band type selection",
+                            "description": "The Bollinger Band type selection",
                             "properties": {
                                 "label": {
                                     "type": "string",
+                                    "description": "The label of the Bollinger Band type",
                                     "enum": [
                                         "Upper Band",
                                         "Middle Band",
                                         "Lower Band"
-                                    ],
-                                    "description": "The label of the Bollinger Band type"
+                                    ]
                                 },
                                 "value": {
                                     "type": "string",
+                                    "description": "The value of the Bollinger Band type",
                                     "enum": [
                                         "upper",
                                         "middle",
                                         "lower"
-                                    ],
-                                    "description": "The value of the Bollinger Band type"
+                                    ]
                                 }
                             },
                             "required": [
@@ -206,25 +206,25 @@
                         },
                         "bbType": {
                             "type": "object",
-                            "description": "Bollinger Band type selection",
+                            "description": "The Bollinger Band type selection",
                             "properties": {
                                 "label": {
                                     "type": "string",
+                                    "description": "The label of the Bollinger Band type",
                                     "enum": [
                                         "Upper Band",
                                         "Middle Band",
                                         "Lower Band"
-                                    ],
-                                    "description": "The label of the Bollinger Band type"
+                                    ]
                                 },
                                 "value": {
                                     "type": "string",
+                                    "description": "The value of the Bollinger Band type",
                                     "enum": [
                                         "upper",
                                         "middle",
                                         "lower"
-                                    ],
-                                    "description": "The value of the Bollinger Band type"
+                                    ]
                                 }
                             },
                             "required": [
@@ -242,12 +242,12 @@
                 },
                 "compare": {
                     "type": "string",
+                    "description": "The comparison operator",
                     "enum": [
                         ">",
                         "<",
                         "="
-                    ],
-                    "description": "The comparison operator"
+                    ]
                 },
                 "compareValue": {
                     "type": "number",
@@ -286,36 +286,14 @@
                     "additionalProperties": false
                 },
                 "macdValue": {
-                    "anyOf": [
-                        {
-                            "type": "null"
-                        },
-                        {
-                            "type": "object",
-                            "description": "MACD specific values",
-                            "properties": {
-                                "fast": {
-                                    "type": "number",
-                                    "description": "Fast period"
-                                },
-                                "slow": {
-                                    "type": "number",
-                                    "description": "Slow period"
-                                },
-                                "signal": {
-                                    "type": "number",
-                                    "description": "Signal period"
-                                }
-                            },
-                            "required": [
-                                "fast",
-                                "slow",
-                                "signal"
-                            ],
-                            "additionalProperties": false
-                        }
+                    "type": [
+                        "object",
+                        "null"
                     ],
-                    "description": "MACD specific values (fast, slow, signal)"
+                    "description": "MACD specific values",
+                    "properties": {},
+                    "required": [],
+                    "additionalProperties": false
                 }
             },
             "required": [

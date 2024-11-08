@@ -1,7 +1,11 @@
 from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
+from tenacity import retry, stop_after_attempt
+from src.utility.util import validate_schema
+from json import loads
 load_dotenv()
 
 
@@ -347,16 +351,60 @@ The final prompt you output should adhere to the following structure below. Do n
 [optional: edge cases, details, and an area to call or repeat out specific important considerations]
 """.strip()
 
-def generate_schema(description: str) -> dict:
+TAKE_TEMPLATE  = """
+Generate a JSON schema based on the provided JSON example, description, and valid options.
+
+# Steps
+
+1. **Analyze the JSON Example**: Understand the structure and data types of each field in the JSON example provided.
+2. **Interpret the Description**: Extract key details from the description to understand the intended configuration and adjust the schema accordingly.
+3. **Utilize Valid Options**: Incorporate the valid options provided to ensure all fields have correct and permissible values.
+4. **Create JSON Schema**: Construct a JSON schema that reflects the structure, data types, constraints, and valid options for each field.
+
+# Provided Reference
+<json_example>
+{json_example}
+</json_example>
+<json_description>
+{json_description}
+</json_description>
+<valid_options>
+{valid_option}
+</valid_options>
+
+# Output Format
+
+The output should be a plain JSON schema representing the structure, types, and constraints of the strategy form configuration.
+
+# Notes
+
+- Ensure that each field in the schema corresponds to the appropriate type (e.g., string, number, object).
+- Use the valid options to restrict fields to acceptable values.
+- The schema should reflect the description by setting defaults or constraints as specified (e.g., specific formula, comparison, or parameters).
+- Do not include any formatting or code block markers in the response.
+- You need to follow the 2020-12 JSON schema standard.
+- The provided example is a valid JSON, so the schema should be able to validate it, so don't set the fields required to be true if they are not in the example.
+"""
+@retry(stop=stop_after_attempt(1))
+def generate_schema(example: str, description: str, valid_option: str, file_name: str, validate: bool = True) -> dict:
+    task_prompt_template = PromptTemplate(
+        input_variables=["json_example", "json_description", "valid_option"], template=TAKE_TEMPLATE
+    )
+    input_task = task_prompt_template.format(
+            json_example=example, json_description=description, valid_option = valid_option
+        )
     message = [
         SystemMessage(content=META_PROMPT_SCHEMA),
-        HumanMessage(content="Description:\n" + description),
+        HumanMessage(content="Description:\n" + input_task),
     ]
     llm = ChatOpenAI(model="gpt-4o")
     llm = llm.with_structured_output(META_SCHEMA, method="json_schema")
     chain = llm
-    return chain.invoke(message)
-
+    
+    res = chain.invoke(message)
+    if validate:
+        validate_schema(schema=res, instance=loads(example), schema_name=file_name, verbose=False)
+    return res
 
 def generate_prompt(task_or_prompt: str) -> str:
     messages = [

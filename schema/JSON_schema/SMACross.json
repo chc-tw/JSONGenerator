@@ -1,5 +1,5 @@
 {
-    "name": "strategy_form",
+    "name": "strategy_form_configuration",
     "type": "object",
     "properties": {
         "conditionStyle": {
@@ -12,15 +12,29 @@
         },
         "conditionType": {
             "type": "object",
-            "description": "The selected condition type",
+            "description": "The selected condition type.",
             "properties": {
                 "label": {
                     "type": "string",
-                    "description": "The label for the condition type, e.g., 'Moving Average'"
+                    "enum": [
+                        "Price",
+                        "Candlestick",
+                        "Moving Average",
+                        "Bollinger Bands",
+                        "RSI",
+                        "MACD"
+                    ]
                 },
                 "value": {
                     "type": "string",
-                    "description": "The value for the condition type, e.g., 'ma'"
+                    "enum": [
+                        "price",
+                        "candlestick",
+                        "ma",
+                        "bb",
+                        "rsi",
+                        "macd"
+                    ]
                 }
             },
             "required": [
@@ -31,19 +45,62 @@
         },
         "formula": {
             "type": "object",
-            "description": "The selected formula",
+            "description": "The selected formula.",
             "properties": {
                 "label": {
                     "type": "string",
-                    "description": "The label for the formula, e.g., 'N Ticks SMA'"
+                    "enum": [
+                        "Price / Price",
+                        "N Ticks Price Comparison",
+                        "N Ticks Candlestick Type",
+                        "SMA compare with SMA",
+                        "N Ticks SMA",
+                        "Latest Price compare with SMA",
+                        "SMA Cross Strategy",
+                        "SMA Slope",
+                        "Bollinger Bands Comparison",
+                        "Bandwidth Comparison",
+                        "Percent B (%B) Comparison",
+                        "Price / Bollinger Bands",
+                        "N Ticks Bandwidth",
+                        "N Ticks Percent B (%B)",
+                        "RSI Comparison",
+                        "RSI Cross Strategy",
+                        "MACD Comparison"
+                    ]
                 },
                 "value": {
                     "type": "string",
-                    "description": "The value for the formula, e.g., 'n_ticks_sma'"
+                    "enum": [
+                        "price/price",
+                        "n_ticks_price",
+                        "n_ticks_candle_type",
+                        "sma/sma",
+                        "n_ticks_sma",
+                        "price/sma",
+                        "sma_cross",
+                        "sma_slope",
+                        "bb_comparison",
+                        "bandwidth_comparison",
+                        "percent_b_comparison",
+                        "price/bb",
+                        "n_ticks_bandwidth",
+                        "n_ticks_percent_b",
+                        "rsi_comparison",
+                        "rsi_cross",
+                        "macd_comparison"
+                    ]
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of formula, e.g., 'ma'"
+                    "enum": [
+                        "price",
+                        "candlestick",
+                        "ma",
+                        "bb",
+                        "rsi",
+                        "macd"
+                    ]
                 }
             },
             "required": [
@@ -55,19 +112,27 @@
         },
         "timeFrameValue": {
             "type": "number",
-            "description": "The numeric value for the time frame"
+            "description": "The numeric value for the time frame."
         },
         "timeFrameUnit": {
             "type": "object",
-            "description": "The selected time frame unit",
+            "description": "The selected time frame unit.",
             "properties": {
                 "label": {
                     "type": "string",
-                    "description": "The label for the time frame unit, e.g., 'Min'"
+                    "enum": [
+                        "Min",
+                        "Hour",
+                        "Day"
+                    ]
                 },
                 "value": {
                     "type": "string",
-                    "description": "The value for the time frame unit, e.g., 'T'"
+                    "enum": [
+                        "T",
+                        "H",
+                        "D"
+                    ]
                 }
             },
             "required": [
@@ -78,19 +143,21 @@
         },
         "detail": {
             "type": "object",
-            "description": "Contains the details of the strategy",
+            "description": "Contains the details of the strategy.",
             "properties": {
                 "numerator": {
                     "type": "object",
-                    "description": "Properties for the numerator part of the formula",
+                    "description": "Properties for the numerator part of the formula.",
                     "properties": {
                         "priceType": {
                             "type": "string",
-                            "description": "Type of price, e.g., 'Close'"
+                            "enum": [
+                                "Close",
+                                "Open"
+                            ]
                         },
                         "minusNumber": {
-                            "type": "number",
-                            "description": "Number of days to subtract"
+                            "type": "number"
                         }
                     },
                     "required": [
@@ -101,11 +168,10 @@
                 },
                 "denominator": {
                     "type": "object",
-                    "description": "Properties for the denominator part of the formula",
+                    "description": "Properties for the denominator part of the formula.",
                     "properties": {
                         "smaValue": {
-                            "type": "number",
-                            "description": "SMA period"
+                            "type": "number"
                         }
                     },
                     "required": [
@@ -115,7 +181,6 @@
                 },
                 "compare": {
                     "type": "string",
-                    "description": "The comparison operator, e.g., '>'",
                     "enum": [
                         ">",
                         "<",
@@ -123,8 +188,7 @@
                     ]
                 },
                 "compareValue": {
-                    "type": "number",
-                    "description": "The value to compare against"
+                    "type": "number"
                 }
             },
             "required": [
@@ -137,28 +201,14 @@
         },
         "params": {
             "type": "object",
-            "description": "Additional parameters for specific strategies",
+            "description": "Additional parameters for specific strategies.",
             "properties": {
                 "bbValue": {
                     "type": [
                         "object",
                         "null"
                     ],
-                    "description": "Bollinger Bands specific values",
-                    "properties": {
-                        "sma": {
-                            "type": "number",
-                            "description": "SMA value for Bollinger Bands"
-                        },
-                        "std": {
-                            "type": "number",
-                            "description": "Standard deviation for Bollinger Bands"
-                        }
-                    },
-                    "required": [
-                        "sma",
-                        "std"
-                    ],
+                    "properties": {},
                     "additionalProperties": false
                 },
                 "macdValue": {
@@ -166,26 +216,7 @@
                         "object",
                         "null"
                     ],
-                    "description": "MACD specific values",
-                    "properties": {
-                        "fast": {
-                            "type": "number",
-                            "description": "Fast period for MACD"
-                        },
-                        "slow": {
-                            "type": "number",
-                            "description": "Slow period for MACD"
-                        },
-                        "signal": {
-                            "type": "number",
-                            "description": "Signal period for MACD"
-                        }
-                    },
-                    "required": [
-                        "fast",
-                        "slow",
-                        "signal"
-                    ],
+                    "properties": {},
                     "additionalProperties": false
                 }
             },

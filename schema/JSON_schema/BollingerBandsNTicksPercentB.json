@@ -4,6 +4,7 @@
     "properties": {
         "conditionStyle": {
             "type": "string",
+            "description": "The style of the condition ('and' or 'or')",
             "enum": [
                 "and",
                 "or"
@@ -11,28 +12,15 @@
         },
         "conditionType": {
             "type": "object",
+            "description": "The selected condition type.",
             "properties": {
                 "label": {
                     "type": "string",
-                    "enum": [
-                        "Price",
-                        "Candlestick",
-                        "Moving Average",
-                        "Bollinger Bands",
-                        "RSI",
-                        "MACD"
-                    ]
+                    "description": "The label of the condition type."
                 },
                 "value": {
                     "type": "string",
-                    "enum": [
-                        "price",
-                        "candlestick",
-                        "ma",
-                        "bb",
-                        "rsi",
-                        "macd"
-                    ]
+                    "description": "The value of the condition type."
                 }
             },
             "required": [
@@ -43,61 +31,19 @@
         },
         "formula": {
             "type": "object",
+            "description": "The selected formula.",
             "properties": {
                 "label": {
                     "type": "string",
-                    "enum": [
-                        "Price / Price",
-                        "N Ticks Price Comparison",
-                        "N Ticks Candlestick Type",
-                        "SMA compare with SMA",
-                        "N Ticks SMA",
-                        "Latest Price compare with SMA",
-                        "SMA Cross Strategy",
-                        "SMA Slope",
-                        "Bollinger Bands Comparison",
-                        "Bandwidth Comparison",
-                        "Percent B (%B) Comparison",
-                        "Price / Bollinger Bands",
-                        "N Ticks Bandwidth",
-                        "N Ticks Percent B (%B)",
-                        "RSI Comparison",
-                        "RSI Cross Strategy",
-                        "MACD Comparison"
-                    ]
+                    "description": "The label of the formula."
                 },
                 "value": {
                     "type": "string",
-                    "enum": [
-                        "price/price",
-                        "n_ticks_price",
-                        "n_ticks_candle_type",
-                        "sma/sma",
-                        "n_ticks_sma",
-                        "price/sma",
-                        "sma_cross",
-                        "sma_slope",
-                        "bb_comparison",
-                        "bandwidth_comparison",
-                        "percent_b_comparison",
-                        "price/bb",
-                        "n_ticks_bandwidth",
-                        "n_ticks_percent_b",
-                        "rsi_comparison",
-                        "rsi_cross",
-                        "macd_comparison"
-                    ]
+                    "description": "The value of the formula."
                 },
                 "type": {
                     "type": "string",
-                    "enum": [
-                        "price",
-                        "candlestick",
-                        "ma",
-                        "bb",
-                        "rsi",
-                        "macd"
-                    ]
+                    "description": "The type of the formula."
                 }
             },
             "required": [
@@ -108,26 +54,20 @@
             "additionalProperties": false
         },
         "timeFrameValue": {
-            "type": "number"
+            "type": "number",
+            "description": "The numeric value for the time frame."
         },
         "timeFrameUnit": {
             "type": "object",
+            "description": "The selected time frame unit.",
             "properties": {
                 "label": {
                     "type": "string",
-                    "enum": [
-                        "Min",
-                        "Hour",
-                        "Day"
-                    ]
+                    "description": "The label of the time frame unit."
                 },
                 "value": {
                     "type": "string",
-                    "enum": [
-                        "T",
-                        "H",
-                        "D"
-                    ]
+                    "description": "The value of the time frame unit."
                 }
             },
             "required": [
@@ -138,177 +78,36 @@
         },
         "detail": {
             "type": "object",
+            "description": "Contains the details of the strategy.",
             "properties": {
                 "numerator": {
                     "type": "object",
+                    "description": "Properties for the numerator part of the formula.",
                     "properties": {
                         "minusNumber": {
-                            "type": "number"
-                        },
-                        "priceType": {
-                            "type": "string"
-                        },
-                        "smaValue": {
-                            "type": "number"
-                        },
-                        "rsiValue": {
-                            "type": "number"
-                        },
-                        "minOrMax": {
-                            "type": "object",
-                            "properties": {
-                                "label": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Minimum",
-                                        "Maximum"
-                                    ]
-                                },
-                                "value": {
-                                    "type": "string",
-                                    "enum": [
-                                        "min",
-                                        "max"
-                                    ]
-                                }
-                            },
-                            "required": [
-                                "label",
-                                "value"
-                            ],
-                            "additionalProperties": false
-                        },
-                        "bbType": {
-                            "type": "object",
-                            "properties": {
-                                "label": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Upper Band",
-                                        "Middle Band",
-                                        "Lower Band"
-                                    ]
-                                },
-                                "value": {
-                                    "type": "string",
-                                    "enum": [
-                                        "upper",
-                                        "middle",
-                                        "lower"
-                                    ]
-                                }
-                            },
-                            "required": [
-                                "label",
-                                "value"
-                            ],
-                            "additionalProperties": false
-                        },
-                        "candleType": {
-                            "type": "string"
+                            "type": "number",
+                            "description": "Number of days to subtract."
                         }
                     },
                     "required": [
-                        "minusNumber",
-                        "priceType",
-                        "smaValue",
-                        "rsiValue",
-                        "minOrMax",
-                        "bbType",
-                        "candleType"
+                        "minusNumber"
                     ],
                     "additionalProperties": false
                 },
                 "denominator": {
                     "type": "object",
-                    "properties": {
-                        "minusNumber": {
-                            "type": "number"
-                        },
-                        "priceType": {
-                            "type": "string"
-                        },
-                        "smaValue": {
-                            "type": "number"
-                        },
-                        "rsiValue": {
-                            "type": "number"
-                        },
-                        "minOrMax": {
-                            "type": "object",
-                            "properties": {
-                                "label": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Minimum",
-                                        "Maximum"
-                                    ]
-                                },
-                                "value": {
-                                    "type": "string",
-                                    "enum": [
-                                        "min",
-                                        "max"
-                                    ]
-                                }
-                            },
-                            "required": [
-                                "label",
-                                "value"
-                            ],
-                            "additionalProperties": false
-                        },
-                        "bbType": {
-                            "type": "object",
-                            "properties": {
-                                "label": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Upper Band",
-                                        "Middle Band",
-                                        "Lower Band"
-                                    ]
-                                },
-                                "value": {
-                                    "type": "string",
-                                    "enum": [
-                                        "upper",
-                                        "middle",
-                                        "lower"
-                                    ]
-                                }
-                            },
-                            "required": [
-                                "label",
-                                "value"
-                            ],
-                            "additionalProperties": false
-                        },
-                        "candleType": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "minusNumber",
-                        "priceType",
-                        "smaValue",
-                        "rsiValue",
-                        "minOrMax",
-                        "bbType",
-                        "candleType"
-                    ],
+                    "description": "Properties for the denominator part of the formula.",
+                    "properties": {},
+                    "required": [],
                     "additionalProperties": false
                 },
                 "compare": {
                     "type": "string",
-                    "enum": [
-                        ">",
-                        "<",
-                        "="
-                    ]
+                    "description": "The comparison operator."
                 },
                 "compareValue": {
-                    "type": "number"
+                    "type": "number",
+                    "description": "The value to compare against."
                 }
             },
             "required": [
@@ -321,15 +120,19 @@
         },
         "params": {
             "type": "object",
+            "description": "Additional parameters for specific strategies.",
             "properties": {
                 "bbValue": {
                     "type": "object",
+                    "description": "Bollinger Bands specific values.",
                     "properties": {
                         "sma": {
-                            "type": "number"
+                            "type": "number",
+                            "description": "SMA period."
                         },
                         "std": {
-                            "type": "number"
+                            "type": "number",
+                            "description": "Standard deviation."
                         }
                     },
                     "required": [
@@ -339,31 +142,14 @@
                     "additionalProperties": false
                 },
                 "macdValue": {
-                    "anyOf": [
-                        {
-                            "type": "object",
-                            "properties": {
-                                "fast": {
-                                    "type": "number"
-                                },
-                                "slow": {
-                                    "type": "number"
-                                },
-                                "signal": {
-                                    "type": "number"
-                                }
-                            },
-                            "required": [
-                                "fast",
-                                "slow",
-                                "signal"
-                            ],
-                            "additionalProperties": false
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
+                    "type": [
+                        "object",
+                        "null"
+                    ],
+                    "description": "MACD specific values.",
+                    "properties": {},
+                    "required": [],
+                    "additionalProperties": false
                 }
             },
             "required": [
