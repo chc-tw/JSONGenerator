@@ -75,7 +75,7 @@ def main():
         with open(
             f"schema/JSON_schema/{file_name}.json", "w"
         ) as f:
-            f.write(json.dumps(result))
+            json.dump(result, f)
     for result in results:
         print(result)
 

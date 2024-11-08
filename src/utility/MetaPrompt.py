@@ -347,7 +347,7 @@ The final prompt you output should adhere to the following structure below. Do n
 [optional: edge cases, details, and an area to call or repeat out specific important considerations]
 """.strip()
 
-def generate_schema(description: str):
+def generate_schema(description: str) -> dict:
     message = [
         SystemMessage(content=META_PROMPT_SCHEMA),
         HumanMessage(content="Description:\n" + description),
@@ -358,7 +358,7 @@ def generate_schema(description: str):
     return chain.invoke(message)
 
 
-def generate_prompt(task_or_prompt: str):
+def generate_prompt(task_or_prompt: str) -> str:
     messages = [
         SystemMessage(content=META_PROMPT),
         HumanMessage(content="Task, Goal, or Current Prompt:\n" + task_or_prompt),
