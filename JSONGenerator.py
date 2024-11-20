@@ -31,7 +31,11 @@ def retrieveChunk(user_query: str, key_word: str) -> str:
     puedo_chunks = text_splitter.split_documents(doc)
     return ''.join(puedo_chunks)
 
-def generateJSON(user_query: str, key_word: str) -> str:
+def parse_key_word(user_query: str) -> str:
+    return user_query.split(":")[0]
+
+def generateJSON(user_query: str) -> str:
+    key_word = parse_key_word(user_query)
     prompt_template = ChatPromptTemplate.from_messages([
         ("system", INSTRUCTION),
         ("user", "{example_query}"),
