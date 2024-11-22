@@ -386,7 +386,7 @@ The output should be a plain JSON schema representing the structure, types, and 
 - The provided example is a valid JSON, so the schema should be able to validate it, so don't set the fields required to be true if they are not in the example.
 """
 @retry(stop=stop_after_attempt(1))
-def generate_schema(example: str, description: str, valid_option: str, file_name: str, validate: bool = True) -> dict:
+def generate_schema(example: str, description: str, valid_option: str, file_name: str, validate: bool = False) -> dict:
     task_prompt_template = PromptTemplate(
         input_variables=["json_example", "json_description", "valid_option"], template=TAKE_TEMPLATE
     )
