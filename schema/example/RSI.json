@@ -1,0 +1,29 @@
+{
+    "conditionStyle": "and",
+    "conditionType": {
+      "label": "RSI",
+      "value": "rsi"
+    },
+    "formula": {
+      "label": "RSI Comparison",
+      "value": "rsi_comparison",
+      "type": "rsi"
+    },
+    "timeFrameValue": 1,
+    "timeFrameUnit": {
+      "label": "Min",
+      "value": "T"
+    },
+    "detail": {
+      "numerator": {
+        "rsiValue": 6
+      },
+      "denominator": {},
+      "compare": ">",
+      "compareValue": 15
+    },
+    "params": {
+      "bbValue": null,
+      "macdValue": null
+    }
+  }

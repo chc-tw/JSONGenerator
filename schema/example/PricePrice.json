@@ -1,37 +1,33 @@
 {
-    "conditionStyle": "and",
-    "conditionType": {
+  "conditionStyle": "and",
+  "conditionType": {
       "label": "Price",
       "value": "price"
-    },
-    "formula": {
-      "label": "N Ticks Price Comparison",
-      "value": "n_ticks_price",
+  },
+  "formula": {
+      "label": "Price / Price",
+      "value": "price/price",
       "type": "price"
-    },
-    "timeFrameValue": 1,
-    "timeFrameUnit": {
+  },
+  "timeFrameValue": 1,
+  "timeFrameUnit": {
       "label": "Min",
       "value": "T"
-    },
-    "detail": {
+  },
+  "detail": {
       "numerator": {
-        "minusNumber": 0,
-        "priceType": "Close"
+          "minusNumber": 0,
+          "priceType": "Close"
       },
       "denominator": {
-        "minusNumber": 6,
-        "priceType": "Close",
-        "minOrMax": {
-          "label": "Minimum",
-          "value": "min"
-        }
+          "minusNumber": 0,
+          "priceType": "Close"
       },
-      "compare": "<",
+      "compare": ">",
       "compareValue": 0
-    },
-    "params": {
+  },
+  "params": {
       "bbValue": null,
       "macdValue": null
-    }
   }
+}

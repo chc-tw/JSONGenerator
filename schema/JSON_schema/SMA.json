@@ -1,244 +1,234 @@
 {
     "name": "strategy_form",
-    "type": "object",
-    "properties": {
-        "conditionStyle": {
-            "type": "string",
-            "description": "The style of the condition ('and' or 'or')",
-            "enum": [
-                "and",
-                "or"
-            ]
-        },
-        "conditionType": {
-            "type": "object",
-            "properties": {
-                "label": {
-                    "type": "string",
-                    "description": "The label of the condition type",
-                    "enum": [
-                        "Price",
-                        "Candlestick",
-                        "Moving Average",
-                        "Bollinger Bands",
-                        "RSI",
-                        "MACD"
-                    ]
-                },
-                "value": {
-                    "type": "string",
-                    "description": "The value of the condition type",
-                    "enum": [
-                        "price",
-                        "candlestick",
-                        "ma",
-                        "bb",
-                        "rsi",
-                        "macd"
-                    ]
-                }
+    "schema": {
+        "type": "object",
+        "properties": {
+            "conditionStyle": {
+                "type": "string",
+                "enum": [
+                    "and",
+                    "or"
+                ],
+                "description": "The style of the condition ('and' or 'or')"
             },
-            "required": [
-                "label",
-                "value"
-            ],
-            "additionalProperties": false
-        },
-        "formula": {
-            "type": "object",
-            "properties": {
-                "label": {
-                    "type": "string",
-                    "description": "The label of the formula",
-                    "enum": [
-                        "Price / Price",
-                        "N Ticks Price Comparison",
-                        "N Ticks Candlestick Type",
-                        "SMA compare with SMA",
-                        "N Ticks SMA",
-                        "Latest Price compare with SMA",
-                        "SMA Cross Strategy",
-                        "SMA Slope",
-                        "Bollinger Bands Comparison",
-                        "Bandwidth Comparison",
-                        "Percent B (%B) Comparison",
-                        "Price / Bollinger Bands",
-                        "N Ticks Bandwidth",
-                        "N Ticks Percent B (%B)",
-                        "RSI Comparison",
-                        "RSI Cross Strategy",
-                        "MACD Comparison"
-                    ]
-                },
-                "value": {
-                    "type": "string",
-                    "description": "The value of the formula",
-                    "enum": [
-                        "price/price",
-                        "n_ticks_price",
-                        "n_ticks_candle_type",
-                        "sma/sma",
-                        "n_ticks_sma",
-                        "price/sma",
-                        "sma_cross",
-                        "sma_slope",
-                        "bb_comparison",
-                        "bandwidth_comparison",
-                        "percent_b_comparison",
-                        "price/bb",
-                        "n_ticks_bandwidth",
-                        "n_ticks_percent_b",
-                        "rsi_comparison",
-                        "rsi_cross",
-                        "macd_comparison"
-                    ]
-                },
-                "type": {
-                    "type": "string",
-                    "description": "The type of the formula",
-                    "enum": [
-                        "price",
-                        "candlestick",
-                        "ma",
-                        "bb",
-                        "rsi",
-                        "macd"
-                    ]
-                }
-            },
-            "required": [
-                "label",
-                "value",
-                "type"
-            ],
-            "additionalProperties": false
-        },
-        "timeFrameValue": {
-            "type": "number",
-            "description": "The numeric value for the time frame"
-        },
-        "timeFrameUnit": {
-            "type": "object",
-            "properties": {
-                "label": {
-                    "type": "string",
-                    "description": "The label of the time frame unit",
-                    "enum": [
-                        "Min",
-                        "Hour",
-                        "Day"
-                    ]
-                },
-                "value": {
-                    "type": "string",
-                    "description": "The value of the time frame unit",
-                    "enum": [
-                        "T",
-                        "H",
-                        "D"
-                    ]
-                }
-            },
-            "required": [
-                "label",
-                "value"
-            ],
-            "additionalProperties": false
-        },
-        "detail": {
-            "type": "object",
-            "properties": {
-                "numerator": {
-                    "type": "object",
-                    "properties": {
-                        "minusNumber": {
-                            "type": "number",
-                            "description": "Number of days to subtract"
-                        },
-                        "smaValue": {
-                            "type": "number",
-                            "description": "SMA period"
-                        }
+            "conditionType": {
+                "type": "object",
+                "properties": {
+                    "label": {
+                        "type": "string",
+                        "enum": [
+                            "Moving Average"
+                        ],
+                        "description": "The label of the condition type"
                     },
-                    "required": [
-                        "minusNumber",
-                        "smaValue"
-                    ],
-                    "additionalProperties": false
+                    "value": {
+                        "type": "string",
+                        "enum": [
+                            "ma"
+                        ],
+                        "description": "The value of the condition type"
+                    }
                 },
-                "denominator": {
-                    "type": "object",
-                    "properties": {
-                        "minusNumber": {
-                            "type": "number",
-                            "description": "Number of days to subtract"
-                        },
-                        "smaValue": {
-                            "type": "number",
-                            "description": "SMA period"
-                        }
+                "required": [
+                    "label",
+                    "value"
+                ],
+                "additionalProperties": false
+            },
+            "formula": {
+                "type": "object",
+                "properties": {
+                    "label": {
+                        "type": "string",
+                        "enum": [
+                            "SMA compare with SMA"
+                        ],
+                        "description": "The label of the formula"
                     },
-                    "required": [
-                        "minusNumber",
-                        "smaValue"
-                    ],
-                    "additionalProperties": false
+                    "value": {
+                        "type": "string",
+                        "enum": [
+                            "sma/sma"
+                        ],
+                        "description": "The value of the formula"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "ma"
+                        ],
+                        "description": "The type of the formula"
+                    }
                 },
-                "compare": {
-                    "type": "string",
-                    "description": "The comparison operator (e.g., '>', '<', '=')",
-                    "enum": [
-                        ">",
-                        "<",
-                        "="
-                    ]
-                },
-                "compareValue": {
-                    "type": "number",
-                    "description": "The value to compare against"
-                }
+                "required": [
+                    "label",
+                    "value",
+                    "type"
+                ],
+                "additionalProperties": false
             },
-            "required": [
-                "numerator",
-                "denominator",
-                "compare",
-                "compareValue"
-            ],
-            "additionalProperties": false
+            "timeFrameValue": {
+                "type": "number",
+                "description": "The numeric value for the time frame"
+            },
+            "timeFrameUnit": {
+                "type": "object",
+                "properties": {
+                    "label": {
+                        "type": "string",
+                        "enum": [
+                            "Min",
+                            "Hour",
+                            "Day"
+                        ],
+                        "description": "The label for the time frame unit"
+                    },
+                    "value": {
+                        "type": "string",
+                        "enum": [
+                            "T",
+                            "H",
+                            "D"
+                        ],
+                        "description": "The value for the time frame unit"
+                    }
+                },
+                "required": [
+                    "label",
+                    "value"
+                ],
+                "additionalProperties": false
+            },
+            "detail": {
+                "type": "object",
+                "properties": {
+                    "numerator": {
+                        "type": "object",
+                        "properties": {
+                            "minusNumber": {
+                                "type": "number",
+                                "description": "Number of days to subtract"
+                            },
+                            "smaValue": {
+                                "type": "number",
+                                "description": "SMA period"
+                            }
+                        },
+                        "required": [
+                            "minusNumber",
+                            "smaValue"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "denominator": {
+                        "type": "object",
+                        "properties": {
+                            "minusNumber": {
+                                "type": "number",
+                                "description": "Number of days to subtract"
+                            },
+                            "smaValue": {
+                                "type": "number",
+                                "description": "SMA period"
+                            }
+                        },
+                        "required": [
+                            "minusNumber",
+                            "smaValue"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "compare": {
+                        "type": "string",
+                        "enum": [
+                            ">",
+                            "<",
+                            "="
+                        ],
+                        "description": "The comparison operator"
+                    },
+                    "compareValue": {
+                        "type": "number",
+                        "description": "The value to compare against"
+                    }
+                },
+                "required": [
+                    "numerator",
+                    "denominator",
+                    "compare",
+                    "compareValue"
+                ],
+                "additionalProperties": false
+            },
+            "params": {
+                "type": "object",
+                "properties": {
+                    "bbValue": {
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "description": "Bollinger Bands specific values",
+                        "properties": {
+                            "sma": {
+                                "type": "number",
+                                "description": "SMA period for Bollinger Bands"
+                            },
+                            "std": {
+                                "type": "number",
+                                "description": "Standard deviation for Bollinger Bands"
+                            }
+                        },
+                        "required": [
+                            "sma",
+                            "std"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "macdValue": {
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "description": "MACD specific values",
+                        "properties": {
+                            "fast": {
+                                "type": "number",
+                                "description": "Fast period for MACD"
+                            },
+                            "slow": {
+                                "type": "number",
+                                "description": "Slow period for MACD"
+                            },
+                            "signal": {
+                                "type": "number",
+                                "description": "Signal period for MACD"
+                            }
+                        },
+                        "required": [
+                            "fast",
+                            "slow",
+                            "signal"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "required": [
+                    "bbValue",
+                    "macdValue"
+                ],
+                "additionalProperties": false
+            }
         },
-        "params": {
-            "type": "object",
-            "properties": {
-                "bbValue": {
-                    "type": [
-                        "object",
-                        "null"
-                    ],
-                    "description": "Bollinger Bands specific values (sma and std)"
-                },
-                "macdValue": {
-                    "type": [
-                        "object",
-                        "null"
-                    ],
-                    "description": "MACD specific values (fast, slow, and signal)"
-                }
-            },
-            "required": [
-                "bbValue",
-                "macdValue"
-            ],
-            "additionalProperties": false
-        }
-    },
-    "required": [
-        "conditionStyle",
-        "conditionType",
-        "formula",
-        "timeFrameValue",
-        "timeFrameUnit",
-        "detail",
-        "params"
-    ],
-    "additionalProperties": false
+        "required": [
+            "conditionStyle",
+            "conditionType",
+            "formula",
+            "timeFrameValue",
+            "timeFrameUnit",
+            "detail",
+            "params"
+        ],
+        "additionalProperties": false
+    }
 }

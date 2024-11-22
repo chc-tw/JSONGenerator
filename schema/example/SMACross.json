@@ -1,32 +1,31 @@
 {
-    "conditionStyle": "and",
-    "conditionType": {
-      "label": "Moving Average",
-      "value": "ma"
+  "conditionStyle": "and",
+  "conditionType": {
+    "label": "Moving Average",
+    "value": "ma"
+  },
+  "formula": {
+    "label": "SMA Cross Strategy",
+    "value": "sma_cross",
+    "type": "ma"
+  },
+  "timeFrameValue": 1,
+  "timeFrameUnit": {
+    "label": "Min",
+    "value": "T"
+  },
+  "detail": {
+    "numerator": {
+      "smaValue": 5
     },
-    "formula": {
-      "label": "N Ticks SMA",
-      "value": "n_ticks_sma",
-      "type": "ma"
+    "denominator": {
+      "smaValue": 20
     },
-    "timeFrameValue": 1,
-    "timeFrameUnit": {
-      "label": "Min",
-      "value": "T"
-    },
-    "detail": {
-      "numerator": {
-        "priceType": "Close",
-        "minusNumber": 5
-      },
-      "denominator": {
-        "smaValue": 20
-      },
-      "compare": ">",
-      "compareValue": 3
-    },
-    "params": {
-      "bbValue": null,
-      "macdValue": null
-    }
+    "compare": ">",
+    "compareValue": 0
+  },
+  "params": {
+    "bbValue": null,
+    "macdValue": null
   }
+}

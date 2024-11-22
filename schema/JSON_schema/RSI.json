@@ -1,5 +1,5 @@
 {
-    "name": "strategy_form_configuration",
+    "name": "strategy_form",
     "schema": {
         "type": "object",
         "properties": {
@@ -13,20 +13,20 @@
             },
             "conditionType": {
                 "type": "object",
-                "description": "The selected condition type (e.g., {label: 'Price', value: 'price'})",
+                "description": "The selected condition type",
                 "properties": {
                     "label": {
                         "type": "string",
-                        "description": "Label of the condition type",
+                        "description": "The label of the condition type",
                         "enum": [
-                            "Moving Average"
+                            "RSI"
                         ]
                     },
                     "value": {
                         "type": "string",
-                        "description": "Value of the condition type",
+                        "description": "The value of the condition type",
                         "enum": [
-                            "ma"
+                            "rsi"
                         ]
                     }
                 },
@@ -38,27 +38,27 @@
             },
             "formula": {
                 "type": "object",
-                "description": "The selected formula (e.g., {label: 'Price / Price', value: 'price/price', type: 'price'})",
+                "description": "The selected formula",
                 "properties": {
                     "label": {
                         "type": "string",
-                        "description": "Label of the formula",
+                        "description": "The label of the formula",
                         "enum": [
-                            "SMA Cross Strategy"
+                            "RSI Comparison"
                         ]
                     },
                     "value": {
                         "type": "string",
-                        "description": "Value of the formula",
+                        "description": "The value of the formula",
                         "enum": [
-                            "sma_cross"
+                            "rsi_comparison"
                         ]
                     },
                     "type": {
                         "type": "string",
-                        "description": "Type of the formula",
+                        "description": "The type of the formula",
                         "enum": [
-                            "ma"
+                            "rsi"
                         ]
                     }
                 },
@@ -71,15 +71,15 @@
             },
             "timeFrameValue": {
                 "type": "number",
-                "description": "The numeric value for the time frame (e.g., 1, 5, 15)"
+                "description": "The numeric value for the time frame"
             },
             "timeFrameUnit": {
                 "type": "object",
-                "description": "The selected time frame unit (e.g., {label: 'Min', value: 'T'})",
+                "description": "The selected time frame unit",
                 "properties": {
                     "label": {
                         "type": "string",
-                        "description": "Label of the time frame unit",
+                        "description": "The label of the time frame unit",
                         "enum": [
                             "Min",
                             "Hour",
@@ -88,7 +88,7 @@
                     },
                     "value": {
                         "type": "string",
-                        "description": "Value of the time frame unit",
+                        "description": "The value of the time frame unit",
                         "enum": [
                             "T",
                             "H",
@@ -110,33 +110,31 @@
                         "type": "object",
                         "description": "Properties for the numerator part of the formula",
                         "properties": {
-                            "smaValue": {
+                            "rsiValue": {
                                 "type": "number",
-                                "description": "SMA period"
+                                "description": "RSI period"
                             }
                         },
                         "required": [
-                            "smaValue"
+                            "rsiValue"
                         ],
                         "additionalProperties": false
                     },
                     "denominator": {
                         "type": "object",
                         "description": "Properties for the denominator part of the formula",
-                        "properties": {
-                            "smaValue": {
-                                "type": "number",
-                                "description": "SMA period"
-                            }
-                        },
-                        "required": [
-                            "smaValue"
-                        ],
+                        "properties": {},
+                        "required": [],
                         "additionalProperties": false
                     },
                     "compare": {
                         "type": "string",
-                        "description": "The comparison operator (e.g., '>', '<', '=')"
+                        "description": "The comparison operator",
+                        "enum": [
+                            ">",
+                            "<",
+                            "="
+                        ]
                     },
                     "compareValue": {
                         "type": "number",
@@ -156,61 +154,24 @@
                 "description": "Additional parameters for specific strategies",
                 "properties": {
                     "bbValue": {
-                        "anyOf": [
-                            {
-                                "type": "object",
-                                "description": "Bollinger Bands specific values (sma and std)",
-                                "properties": {
-                                    "sma": {
-                                        "type": "number",
-                                        "description": "SMA value for Bollinger Bands"
-                                    },
-                                    "std": {
-                                        "type": "number",
-                                        "description": "Standard deviation value for Bollinger Bands"
-                                    }
-                                },
-                                "required": [
-                                    "sma",
-                                    "std"
-                                ],
-                                "additionalProperties": false
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "description": "Bollinger Bands specific values (sma and std)",
+                        "properties": {},
+                        "required": [],
+                        "additionalProperties": false
                     },
                     "macdValue": {
-                        "anyOf": [
-                            {
-                                "type": "object",
-                                "description": "MACD specific values (fast, slow, and signal)",
-                                "properties": {
-                                    "fast": {
-                                        "type": "number",
-                                        "description": "Fast period for MACD"
-                                    },
-                                    "slow": {
-                                        "type": "number",
-                                        "description": "Slow period for MACD"
-                                    },
-                                    "signal": {
-                                        "type": "number",
-                                        "description": "Signal period for MACD"
-                                    }
-                                },
-                                "required": [
-                                    "fast",
-                                    "slow",
-                                    "signal"
-                                ],
-                                "additionalProperties": false
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "description": "MACD specific values (fast, slow, and signal)",
+                        "properties": {},
+                        "required": [],
+                        "additionalProperties": false
                     }
                 },
                 "required": [

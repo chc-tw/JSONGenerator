@@ -5,7 +5,7 @@
         "properties": {
             "conditionStyle": {
                 "type": "string",
-                "description": "The style of the condition.",
+                "description": "The style of the condition ('and' or 'or').",
                 "enum": [
                     "and",
                     "or"
@@ -17,16 +17,16 @@
                 "properties": {
                     "label": {
                         "type": "string",
-                        "description": "Label of the condition type.",
+                        "description": "The label of the condition type.",
                         "enum": [
-                            "Candlestick"
+                            "RSI"
                         ]
                     },
                     "value": {
                         "type": "string",
-                        "description": "Value of the condition type.",
+                        "description": "The value of the condition type.",
                         "enum": [
-                            "candlestick"
+                            "rsi"
                         ]
                     }
                 },
@@ -42,23 +42,23 @@
                 "properties": {
                     "label": {
                         "type": "string",
-                        "description": "Label of the formula.",
+                        "description": "The label of the formula.",
                         "enum": [
-                            "N Ticks Candlestick Type"
+                            "RSI Cross Strategy"
                         ]
                     },
                     "value": {
                         "type": "string",
-                        "description": "Value of the formula.",
+                        "description": "The value of the formula.",
                         "enum": [
-                            "n_ticks_candle_type"
+                            "rsi_cross"
                         ]
                     },
                     "type": {
                         "type": "string",
-                        "description": "Type of the formula.",
+                        "description": "The type of the formula.",
                         "enum": [
-                            "candlestick"
+                            "rsi"
                         ]
                     }
                 },
@@ -79,21 +79,11 @@
                 "properties": {
                     "label": {
                         "type": "string",
-                        "description": "Label of the time frame unit.",
-                        "enum": [
-                            "Min",
-                            "Hour",
-                            "Day"
-                        ]
+                        "description": "The label of the time frame unit."
                     },
                     "value": {
                         "type": "string",
-                        "description": "Value of the time frame unit.",
-                        "enum": [
-                            "T",
-                            "H",
-                            "D"
-                        ]
+                        "description": "The value of the time frame unit."
                     }
                 },
                 "required": [
@@ -110,30 +100,28 @@
                         "type": "object",
                         "description": "Properties for the numerator part of the formula.",
                         "properties": {
-                            "minusNumber": {
+                            "rsiValue": {
                                 "type": "number",
-                                "description": "Number of days to subtract."
-                            },
-                            "candleType": {
-                                "type": "string",
-                                "description": "Type of candle.",
-                                "enum": [
-                                    "bullish",
-                                    "bearish"
-                                ]
+                                "description": "RSI period for the numerator."
                             }
                         },
                         "required": [
-                            "minusNumber",
-                            "candleType"
+                            "rsiValue"
                         ],
                         "additionalProperties": false
                     },
                     "denominator": {
                         "type": "object",
                         "description": "Properties for the denominator part of the formula.",
-                        "properties": {},
-                        "required": [],
+                        "properties": {
+                            "rsiValue": {
+                                "type": "number",
+                                "description": "RSI period for the denominator."
+                            }
+                        },
+                        "required": [
+                            "rsiValue"
+                        ],
                         "additionalProperties": false
                     },
                     "compare": {
@@ -164,7 +152,6 @@
                         ],
                         "description": "Bollinger Bands specific values.",
                         "properties": {},
-                        "required": [],
                         "additionalProperties": false
                     },
                     "macdValue": {
@@ -174,7 +161,6 @@
                         ],
                         "description": "MACD specific values.",
                         "properties": {},
-                        "required": [],
                         "additionalProperties": false
                     }
                 },

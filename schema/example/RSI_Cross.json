@@ -1,0 +1,31 @@
+{
+    "conditionStyle": "and",
+    "conditionType": {
+      "label": "RSI",
+      "value": "rsi"
+    },
+    "formula": {
+      "label": "RSI Cross Strategy",
+      "value": "rsi_cross",
+      "type": "rsi"
+    },
+    "timeFrameValue": 1,
+    "timeFrameUnit": {
+      "label": "Min",
+      "value": "T"
+    },
+    "detail": {
+      "numerator": {
+        "rsiValue": 6
+      },
+      "denominator": {
+        "rsiValue": 12
+      },
+      "compare": ">",
+      "compareValue": 0
+    },
+    "params": {
+      "bbValue": null,
+      "macdValue": null
+    }
+  }
