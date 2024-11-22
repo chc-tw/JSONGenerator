@@ -1,3 +1,4 @@
 .env
 temp*
 *.pdf
+*.txt
