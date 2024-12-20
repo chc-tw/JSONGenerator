@@ -1,0 +1,20 @@
+The Relative Strength Index (RSI) is a widely used mathematical indicator in technical analysis that measures a market's momentum and overbought/oversold conditions. It is calculated using the formula:
+
+RSI = 100 - \frac{100}{1 + RS},
+
+where **RS** is the ratio of the average gains to average losses over a specified period, typically 14 days.
+
+### Key Features of RSI:
+1. **Objective Indicator**: RSI provides an objective measure to identify overbought (RSI > 70) or oversold (RSI < 30) market conditions.
+2. **Mean Reversion Tool**: The RSI leverages markets' tendencies to revert to the mean, making it a key instrument in counter-trend trading systems.
+3. **Timeframes**: It is most commonly applied to 14 periods, but traders can adjust this based on their strategy or market.
+
+### Why RSI Works:
+- RSI capitalizes on psychological aspects of market behavior, such as fear and greed. When a market becomes overbought or oversold, traders often act emotionally, creating opportunities for those using RSI-based systems to exploit these extremes.
+
+### Applications:
+- **Entry and Exit Signals**: Traders use RSI to identify potential turning points in the market, entering when RSI indicates oversold conditions and exiting when it signals overbought levels.
+- **Trend Confirmation**: It can also serve as a confirmation tool when aligned with other indicators, ensuring that trades are entered in line with the prevailing trend.
+
+### Practical Example:
+In a bullish market, RSI can help confirm upward momentum. For instance, if the RSI moves above 70 and begins to decline, traders might interpret this as a sign of weakening bullish momentum and prepare for a pullback.
