@@ -129,10 +129,10 @@ async def generateJSON(user_query: str, key: str) -> str:
     relevant_chunk = retrieveChunk(user_query, key_word)
     # with open(f"schema/JSON_schema/{key_word}.json", "r") as f:
     #     schema = f.read()
-    schema = json.loads(open(f"./schema/JSON_schema/SMA.json", "r").read())
+    schema = json.loads(open(f"./schema/JSON_schema/RSI_Cross.json", "r").read())
     structured_llm = llm.with_structured_output(schema, method="json_schema")
     chain = prompt_template | structured_llm
-    return chain.invoke({"example_query": example_query, "example_schema": example_schema, "user_query": user_query, "relevant_chunk": relevant_chunk})
+    return chain.invoke({"example_query": example_query, "example_schema": example_schema, "user_query": user_query, "relevant_chunk": ""})
 
 
 if __name__ == "__main__":
